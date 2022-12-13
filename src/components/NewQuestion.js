@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export default function NewQuestion(props) {
     const url = `http://jservice.io/api/random`
     
-    const [question, setQuestion] = useState("null");
+    const [question, setQuestion] = useState(null);
     
     const [hide, setHide] = useState(false)
 
@@ -41,7 +41,6 @@ export default function NewQuestion(props) {
                 {hide &&
                     <h3 id="Answer">Answer: {question[0].answer}</h3>}
                 <br />
-                <button>Show Question</button>
                 <button onClick={ShowAnswer}>Show Answer</button>
             </div>
         )
