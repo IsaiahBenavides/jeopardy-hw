@@ -1,10 +1,13 @@
 import './App.css';
-import {useState, useEffect} from "react"
+import NewQuestion from './components/NewQuestion';
+import Score from './components/Score';
+
 
 function App() {
   return (
     <div className="App">
-      <button>Random Trivia Question</button>
+      <Score />
+      <NewQuestion />
     </div>
   );
 }
