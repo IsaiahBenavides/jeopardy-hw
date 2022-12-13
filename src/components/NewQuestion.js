@@ -2,8 +2,14 @@ import { useState, useEffect } from "react";
 
 export default function NewQuestion(props) {
     const url = `http://jservice.io/api/random`
-
+    
     const [question, setQuestion] = useState("null");
+    
+    const [hide, setHide] = useState(false)
+
+    const ShowAnswer = () =>{
+        setHide(toggle => !toggle)
+    }
 
     const getQ = async () => {
         try {
@@ -14,7 +20,7 @@ export default function NewQuestion(props) {
             console.error(err)
         }
     }
-
+    
     const handleClick = (evt) => {
         evt.preventDefault()
         getQ()
@@ -23,16 +29,20 @@ export default function NewQuestion(props) {
     useEffect(() => {
         getQ()
     }, [])
-
+    
+    
     const loaded = () => {
         return (
             <div>
                 <button onClick={handleClick}>New Question</button>
-                <h3>Category: {console.log(question[0])}</h3>
+                <h2>Question: {question[0].question}</h2>
+                <h3>Category: {question[0].category.title}</h3>
                 <h3>Points: {question[0].value}</h3>
-                <h3>Answer: {question[0].answer}</h3>
+                {hide &&
+                    <h3 id="Answer">Answer: {question[0].answer}</h3>}
                 <br />
                 <button>Show Question</button>
+                <button onClick={ShowAnswer}>Show Answer</button>
             </div>
         )
     }
